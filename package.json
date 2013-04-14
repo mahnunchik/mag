@@ -1,0 +1,15 @@
+{
+  "name": "mag",
+  "description": "Logger for Node.JS",
+  "version": "0.0.2",
+  "author": "Eugeny Vlasenko <mahnunchik@gmail.com>",
+  "keywords": ["log", "logger"],
+  "main": "./lib/mag.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "*"
+  }
+}
