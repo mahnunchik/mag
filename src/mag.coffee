@@ -59,22 +59,22 @@ class Logger
 
   emergency: ()->
     @_log(0, arguments)
-  emerg: @emergency
+  emerg: @::emergency
 
   alert: ()->
     @_log(1, arguments)
 
   critical: ()->
     @_log(2, arguments)
-  crit: @critical
+  crit: @::critical
 
   error: ()->
     @_log(3, arguments)
-  err: @error
+  err: @::error
 
   warning: ()->
     @_log(4, arguments)
-  warn: @warning
+  warn: @::warning
 
   notice: ()->
     @_log(5, arguments)

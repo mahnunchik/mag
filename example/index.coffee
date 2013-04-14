@@ -30,3 +30,8 @@ logger.warning(msg, meta_0, meta_1)
 logger.notice(msg, meta_0, meta_1)
 logger.info(msg, meta_0, meta_1)
 logger.debug(msg, meta_0, meta_1)
+
+logger.emerg(msg, meta_0, meta_1)
+logger.crit(msg, meta_0, meta_1)
+logger.err(msg, meta_0, meta_1)
+logger.warn(msg, meta_0, meta_1)
