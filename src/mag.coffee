@@ -1,7 +1,7 @@
 istty = process.stdout.isTTY
 util = require('util')
 slice = Array.prototype.slice
-pid = process.pid
+pid = process.pid.toString()
 hostname = require('os').hostname().replace(/\s+/g, '')
 
 levels =
@@ -87,7 +87,7 @@ class Logger
 
 
 module.exports = exports = (tag, level)->
-  level = exports[level.toUpperCase()] if 'string' == typeof level
+  level = levels[level.toUpperCase()] if 'string' == typeof level
   exports.level = level if level?
   return new Logger(tag)
 
@@ -100,8 +100,18 @@ exports.formats = formats =
     return "#{data.timestamp.toLocaleTimeString()} #{data.hostname} #{data.tag}[#{data.pid}]: <#{data.levelName}> #{data.message}"
   file: (data)->
     return JSON.stringify(data)
+  logstash: (data)->
+    return JSON.stringify {
+      '@timestamp': data.timestamp
+      '@tags': [data.tag, data.pid, data.levelName]
+      '@source': "#{data.hostname} #{data.tag}[#{data.pid}]"
+      '@message': data.message
+      '@fields':
+        level: data.level
+        levelName: data.levelName
+    }
 
 if istty == true
   exports.format = formats.console
 else
-  exports.format = formats.file
+  exports.format = formats.logstash
