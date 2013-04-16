@@ -100,6 +100,11 @@ exports.formats = formats =
     return "#{data.timestamp.toLocaleTimeString()} #{data.hostname} #{data.tag}[#{data.pid}]: <#{data.levelName}> #{data.message}"
   file: (data)->
     return JSON.stringify(data)
+  ###
+    logstash's internal message format
+    https://github.com/logstash/logstash/wiki/logstash's-internal-message-format
+    https://logstash.jira.com/browse/LOGSTASH-675
+  ###
   logstash: (data)->
     return JSON.stringify {
       '@timestamp': data.timestamp
@@ -114,4 +119,4 @@ exports.formats = formats =
 if istty == true
   exports.format = formats.console
 else
-  exports.format = formats.logstash
+  exports.format = formats.file
