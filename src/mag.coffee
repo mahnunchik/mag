@@ -85,6 +85,11 @@ class Logger
   debug: ()->
     @_log(7, arguments)
 
+  ###
+    Connect/Express middleware
+  ###
+  write: ()->
+    @_log(6, arguments)
 
 module.exports = exports = (tag, level)->
   level = levels[level.toUpperCase()] if 'string' == typeof level
