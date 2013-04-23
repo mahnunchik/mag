@@ -39,10 +39,10 @@ levelNames = [
 ]
 
 class Logger
-  constructor: (@tag='')->
+  constructor: (@tag='', @level=levels.DEBUG)->
 
   _log: (level, message)->
-    if level <= exports.level
+    if level <= exports.level && level <= @level
       data = 
         tag: @tag
         pid: pid
@@ -93,10 +93,13 @@ class Logger
 
 module.exports = exports = (tag, level)->
   level = levels[level.toUpperCase()] if 'string' == typeof level
-  exports.level = level if level?
-  return new Logger(tag)
+  return new Logger(tag, level)
 
 exports.level = levels.DEBUG
+
+exports.setLevel = (level)->
+  level = levels[level.toUpperCase()] if 'string' == typeof level
+  exports.level = level if level?
 
 exports.levels = levels
 

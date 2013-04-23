@@ -1,4 +1,7 @@
-logger = require('../')('logger name', 'INFO')
+mag = require('../')
+logger = mag('logger name', 'INFO')
+
+mag.setLevel('ERROR')
 
 msg = 'this is message'
 meta_0 = {data: 'meta'}
