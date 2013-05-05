@@ -1,22 +1,21 @@
 COFFEE ?= node_modules/.bin/coffee
 
-SRC := src
+SRC_DIR := src
 OUT_DIR := lib
+VPATH = $(SRC_DIR)
 
-SCRIPTS = $(patsubst $(SRC)/%.coffee, \
-                     $(OUT_DIR)/%.js, \
-                     $(wildcard $(SRC)/*.coffee))
+SCRIPTS = $(patsubst $(SRC_DIR)/%.coffee,   \
+                     $(OUT_DIR)/%.js,       \
+                     $(wildcard $(SRC_DIR)/*.coffee))
 
 .SUFFIXES:
 .PHONY: all clean
 
 all: $(SCRIPTS)
 
-$(OUT_DIR)/%.js : $(SRC)/%.coffee | $(OUT_DIR)
-	$(COFFEE) -cb -o $(OUT_DIR) $^
-
-$(OUT_DIR) :
-	mkdir -p $@
+$(OUT_DIR)/%.js : %.coffee
+	@mkdir -p $(@D)
+	$(COFFEE) -cb -o $(@D) $^
 
 clean:
 	rm -rf $(OUT_DIR)
