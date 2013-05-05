@@ -12,6 +12,10 @@
   "devDependencies": {
     "coffee-script": "*"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mahnunchik/mag.git"
+  },
   "scripts": {
     "prepublish": "make clean && make all"
   }
