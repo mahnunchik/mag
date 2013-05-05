@@ -1,7 +1,7 @@
 {
   "name": "mag",
   "description": "Logger for Node.JS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Eugeny Vlasenko <mahnunchik@gmail.com>",
   "keywords": ["log", "logger"],
   "main": "./lib/mag.js",
@@ -11,5 +11,8 @@
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "*"
+  },
+  "scripts": {
+    "prepublish": "make clean && make all"
   }
 }
