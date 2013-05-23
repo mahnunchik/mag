@@ -10,7 +10,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "coffeelint": "*"
   },
   "repository": {
     "type": "git",

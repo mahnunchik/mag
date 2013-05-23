@@ -1,4 +1,7 @@
-COFFEE ?= node_modules/.bin/coffee
+NODE_BIN ?= node_modules/.bin
+
+COFFEE ?= $(NODE_BIN)/coffee
+COFFEELINT ?= $(NODE_BIN)/coffeelint
 
 SRC_DIR := src
 OUT_DIR := lib
@@ -16,6 +19,9 @@ all: $(SCRIPTS)
 $(OUT_DIR)/%.js : %.coffee
 	@mkdir -p $(@D)
 	$(COFFEE) -cb -o $(@D) $^
+
+lint:
+	$(COFFEELINT) -r -f coffeelint.json src/
 
 clean:
 	rm -rf $(OUT_DIR)

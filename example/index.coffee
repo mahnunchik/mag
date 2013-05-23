@@ -1,7 +1,7 @@
 mag = require('../')
-logger = mag('logger name', 'INFO')
+logger = mag('logger name')
 
-mag.setLevel('ERROR')
+mag.setLevel('INFO')
 
 msg = 'this is message'
 meta_0 = {data: 'meta'}
@@ -38,3 +38,6 @@ logger.emerg(msg, meta_0, meta_1)
 logger.crit(msg, meta_0, meta_1)
 logger.err(msg, meta_0, meta_1)
 logger.warn(msg, meta_0, meta_1)
+
+logger.write("express message1\n")
+logger.write("express message2\n")
