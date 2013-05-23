@@ -224,7 +224,7 @@ exports.formats = formats =
    * https://logstash.jira.com/browse/LOGSTASH-675
   ###
   file: (data)->
-    return JSON.stringify {
+    return JSON.stringify({
       '@timestamp': data.timestamp
       '@tags': [data.tag, data.pid, data.levelName]
       '@source': "#{data.hostname} #{data.tag}[#{data.pid}]"
@@ -232,7 +232,7 @@ exports.formats = formats =
       '@fields':
         level: data.level
         levelName: data.levelName
-    }
+    }) + "\n"
 
 if istty == true
   exports.format = formats.console
