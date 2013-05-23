@@ -1,4 +1,9 @@
-mag
-===
+# mag
 
-logger for nodejs
+tiny logger for nodejs
+
+## Installation
+
+```
+$ npm install mag
+```
