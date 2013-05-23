@@ -36,6 +36,17 @@ $ cat example.log
 {"@timestamp":"2013-05-23T06:09:26.780Z","@tags":["example","20879","INFO"],"@source":"mahnunchik-desktop example[20879]","@message":"example message { meta: 'some metadata' }","@fields":{"level":6,"levelName":"INFO"}}
 ```
 
+## Configuration
+
+Setting global log level:
+```
+var mag = require('mag');
+var logger = mag('example');
+
+mag.setLevel('ERROR');
+logger.info("example message", {meta: "some metadata"});
+```
+
 ## License
 
 (The MIT License)

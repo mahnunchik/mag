@@ -1,9 +1,9 @@
 {
   "name": "mag",
   "description": "Logger for Node.JS",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Eugeny Vlasenko <mahnunchik@gmail.com>",
-  "keywords": ["log", "logger"],
+  "keywords": ["log", "logger", "logstash"],
   "main": "./lib/mag.js",
   "engines": {
     "node": ">= 0.6.0"

@@ -1,4 +1,4 @@
-logger = require('../')('logger test speed', 'INFO')
+logger = require('../')('logger test speed')
 to = 1000
 
 
