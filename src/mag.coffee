@@ -1,34 +1,45 @@
 
 ###*
+ * # mag
+ *
+ * tiny logger for nodejs supports [logstash's internal message format](https://github.com/logstash/logstash/wiki/logstash's-internal-message-format)
+ *
+ * @version 0.0.6
+ * @author Eugeny Vlasenko <mahnunchik@gmail.com>
+ *
+###
+
+###!
  * Module dependencies
 ###
 
 util = require('util')
 
-###*
+###!
  * Cached slice method
 ###
 
 slice = Array.prototype.slice
 
-###*
+###!
  * Logged fields
 ###
 
 pid = process.pid.toString()
 hostname = require('os').hostname().replace(/\s+/g, '')
 
-###*
+###!
  * Is stdout TTY?
 ###
 
 istty = process.stdout.isTTY
 
-###*
+###!
  * Log levels with shortcuts
 ###
 
 levels =
+  NONE: -1
   EMERGENCY: 0
   emergency: 0
   emerg: 0
@@ -51,7 +62,7 @@ levels =
   DEBUG: 7
   debug: 7
 
-###*
+###!
  * Full log level names
 ###
 
@@ -66,28 +77,60 @@ levelNames = [
   'DEBUG'
 ]
 
-###*
- * Logger
- * @class Logger
+###!
+ * Colors to use in shell output
 ###
+
+colors = [
+  '\x1b[0;32m'
+  '\x1b[0;36m'
+  '\x1b[0;31m'
+  '\x1b[0;35m'
+  '\x1b[0;33m'
+  '\x1b[0;37m'
+  '\x1b[1;34m'
+  '\x1b[1;32m'
+  '\x1b[1;36m'
+  '\x1b[1;31m'
+  '\x1b[1;35m'
+  '\x1b[1;33m'
+  '\x1b[0;34m'
+]
+
+prevColor = 0
+
+color = ()->
+  return colors[prevColor++ % colors.length]
+
 
 class Logger
 
   ###*
+   *
+   * Mag costructor
+   *
+   * @param {String} tag name to attach to each log message
+   * @param {Number} level log level
+   * @param {String} color color of message
    * @constructor
-   * @param {String} tag tag to attach to each log message
+   *
   ###
 
-  constructor: (@tag='')->
+  constructor: (@tag, @level, @color)->
 
   ###*
-   * @private
+   *
+   * Basic log method
+   *
+   * @method _log
+   *
    * @param {Number} level log level
    * @param {Array} message entities for log
+   *
   ###
 
   _log: (level, message)->
-    if level <= exports.level
+    if level <= @level
       data =
         tag: @tag
         pid: pid
@@ -96,11 +139,17 @@ class Logger
         level: level
         levelName: levelNames[level]
         message: util.format.apply(this, message)
+        color: @color
       process.stdout.write(exports.format(data))
 
   ###*
+   *
+   * Usage:
+   *     logger.log('INFO', message)
+   *
    * @param {String} levelName log level name
-   * @param message log message
+   * @param {Any} messages entities to log
+   *
   ###
 
   log: (levelName)->
@@ -108,7 +157,11 @@ class Logger
     @_log(level, slice.call(arguments, 1))
 
   ###*
-   * @param message log message
+   *
+   * System is unusable
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   emergency: ()->
@@ -116,14 +169,22 @@ class Logger
   emerg: @::emergency
 
   ###*
-   * @param message log message
+   *
+   * Action must be taken immediately
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   alert: ()->
     @_log(1, arguments)
 
   ###*
-   * @param message log message
+   *
+   * Critical conditions
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   critical: ()->
@@ -131,7 +192,11 @@ class Logger
   crit: @::critical
 
   ###*
-   * @param message log message
+   *
+   * Error conditions.
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   error: ()->
@@ -139,7 +204,11 @@ class Logger
   err: @::error
 
   ###*
-   * @param message log message
+   *
+   * Warning conditions
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   warning: ()->
@@ -147,29 +216,44 @@ class Logger
   warn: @::warning
 
   ###*
-   * @param message log message
+   *
+   * Normal but significant condition
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   notice: ()->
     @_log(5, arguments)
 
   ###*
-   * @param message log message
+   *
+   * Informational messages
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   info: ()->
     @_log(6, arguments)
 
   ###*
-   * @param message log message
+   *
+   * Debug-level messages
+   *
+   * @param {Any} messages entities to log
+   *
   ###
 
   debug: ()->
     @_log(7, arguments)
 
   ###*
+   *
    * Connect/Express middleware
+   *
    * @param {String} str message to log
+   *
   ###
 
   write: (str)->
@@ -177,33 +261,21 @@ class Logger
     @_log(6, [str])
 
 ###*
+ *
  * Logger factory
+ *
+ * Usage:
+ *     logger = require('mag')('my_logger', 'INFO')
+ *
+ * @param {String} tag name to attach to each log message
+ * @param {Number|String} level log level
+ *
 ###
 
-module.exports = exports = (tag)->
-  return new Logger(tag)
-
-###*
- * Default log level
-###
-
-exports.level = levels.DEBUG
-
-###*
- * Set global log level
- * @param {Sting|Number} level log level
-###
-
-exports.setLevel = (level)->
+module.exports = exports = (tag='', level)->
   level = levels[level.toUpperCase()] if 'string' == typeof level
-  exports.level = level if level?
-
-###*
- * All levels
-###
-
-exports.levels = levels
-
+  level ?= levels.DEBUG
+  return new Logger(tag, level, color())
 
 # ANSI Terminal Colors
 bold = '\x1b[0;1m'
@@ -211,14 +283,16 @@ green = '\x1b[0;32m'
 reset = '\x1b[0m'
 cyan = '\x1b[0;36m'
 
+exports.levels = levels
 
 exports.formats = formats =
   console: (data)->
-    return "#{data.timestamp.toLocaleTimeString()} " +
-      "#{data.hostname} #{green}#{data.tag}[#{data.pid}]: #{reset}" +
+    t = data.timestamp
+    return "#{t.toLocaleTimeString()}.#{t.getMilliseconds()} " +
+      "#{data.hostname} #{data.color}#{data.tag}[#{data.pid}]:#{reset} " +
       "#{cyan}<#{data.levelName}>#{reset} #{data.message}\n"
 
-  ###*
+  ###!
    * logstash's internal message format
    * https://github.com/logstash/logstash/wiki/logstash's-internal-message-format
    * https://logstash.jira.com/browse/LOGSTASH-675

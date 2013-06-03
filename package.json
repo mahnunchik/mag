@@ -1,9 +1,9 @@
 {
   "name": "mag",
   "description": "Logger for Node.JS",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Eugeny Vlasenko <mahnunchik@gmail.com>",
-  "keywords": ["log", "logger", "logstash"],
+  "keywords": ["log", "logger", "logging", "logstash", "console"],
   "main": "./lib/mag.js",
   "engines": {
     "node": ">= 0.6.0"
@@ -11,7 +11,8 @@
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "*",
-    "coffeelint": "*"
+    "coffeelint": "*",
+    "markdox": "*"
   },
   "repository": {
     "type": "git",

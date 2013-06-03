@@ -33,17 +33,22 @@ File log:
 ```
 $ node example/example.js > example.log
 $ cat example.log 
-{"@timestamp":"2013-05-23T06:09:26.780Z","@tags":["example","20879","INFO"],"@source":"mahnunchik-desktop example[20879]","@message":"example message { meta: 'some metadata' }","@fields":{"level":6,"levelName":"INFO"}}
+{
+  "@timestamp":"2013-05-23T06:09:26.780Z",
+  "@tags":["example","20879","INFO"],
+  "@source":"mahnunchik-desktop example[20879]",
+  "@message":"example message { meta: 'some metadata' }",
+  "@fields":{"level":6,"levelName":"INFO"}
+}
 ```
 
 ## Configuration
 
-Setting global log level:
+Setting log level:
 ```
 var mag = require('mag');
-var logger = mag('example');
+var logger = mag('example', 'ERROR');
 
-mag.setLevel('ERROR');
 logger.info("example message", {meta: "some metadata"});
 ```
 
