@@ -35,6 +35,7 @@ Basic log method
 ## log(levelName, messages)
 
 Usage:
+
     logger.log('INFO', message)
 
 ### Params: 
@@ -120,6 +121,7 @@ Connect/Express middleware
 Logger factory
 
 Usage:
+
     logger = require('mag')('my_logger', 'INFO')
 
 ### Params: 

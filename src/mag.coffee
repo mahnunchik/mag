@@ -145,6 +145,7 @@ class Logger
   ###*
    *
    * Usage:
+   *
    *     logger.log('INFO', message)
    *
    * @param {String} levelName log level name
@@ -265,6 +266,7 @@ class Logger
  * Logger factory
  *
  * Usage:
+ *
  *     logger = require('mag')('my_logger', 'INFO')
  *
  * @param {String} tag name to attach to each log message

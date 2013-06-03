@@ -52,6 +52,10 @@ var logger = mag('example', 'ERROR');
 logger.info("example message", {meta: "some metadata"});
 ```
 
+## Documentation
+
+Documentation is [here](https://github.com/mahnunchik/mag/blob/master/docs/mag.md)
+
 ## License
 
 (The MIT License)
