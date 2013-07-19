@@ -1,6 +1,8 @@
 # mag
 
-tiny logger for nodejs supports [logstash's internal message format](https://github.com/logstash/logstash/wiki/logstash's-internal-message-format)
+Tiny logger for nodejs supports [logstash's internal message format](https://github.com/logstash/logstash/wiki/logstash's-internal-message-format)
+
+Inspired by [debug](https://github.com/visionmedia/debug) and [Syslog](http://en.wikipedia.org/wiki/Syslog)
 
 ## Installation
 

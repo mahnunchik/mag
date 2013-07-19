@@ -1,5 +1,5 @@
 mag = require('../')
-logger = mag('logger name', 'INFO')
+logger = mag('logger name')
 
 msg = 'this is message'
 meta_0 = {data: 'meta'}
@@ -40,6 +40,9 @@ logger.warn(msg, meta_0, meta_1)
 logger.write("express message1\n")
 logger.write("express message2\n")
 
+logger.error 'message with error:', new Error('test error')
+
 for i in [0..20]
   log = mag('test colors')
-  log.info("I am test color ##{i}")
+  log.info("I am test color info ##{i}")
+  log.debug("I am test color debug ##{i}")

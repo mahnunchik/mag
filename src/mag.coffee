@@ -103,6 +103,38 @@ color = ()->
   return colors[prevColor++ % colors.length]
 
 
+
+###!
+ * Enabled debuggers
+ * From https://github.com/visionmedia/debug
+###
+
+names = []
+skips = []
+
+DEBUG = process.env.DEBUG || ''
+DEBUG.split(/[\s,]+/).forEach (name)->
+  name = name.replace('*', '.*?')
+  if name[0] == '-'
+    skips.push(new RegExp('^' + name.substr(1) + '$'))
+  else
+    names.push(new RegExp('^' + name + '$'))
+
+###!
+ * Choose default log lavel
+###
+
+NODE_ENV = process.env.NODE_ENV || 'development'
+
+switch NODE_ENV
+  when 'development'
+    DEFAULT_LAVEL = levels.DEBUG
+  when 'test'
+    DEFAULT_LAVEL = levels.NONE
+  else
+    DEFAULT_LAVEL = levels.INFO
+
+
 class Logger
 
   ###*
@@ -140,6 +172,12 @@ class Logger
         levelName: levelNames[level]
         message: util.format.apply(this, message)
         color: @color
+      stack = []
+      for val in slice.call(message, 0)
+        if val instanceof Error and val.stack?
+          stack.push val.stack
+      if stack.length > 0
+        data.stack = stack.join("\n")
       process.stdout.write(exports.format(data))
 
   ###*
@@ -276,7 +314,18 @@ class Logger
 
 module.exports = exports = (tag='', level)->
   level = levels[level.toUpperCase()] if 'string' == typeof level
-  level ?= levels.DEBUG
+  
+  unless level?
+    match = skips.some (re)->
+      return re.test(tag)
+    level = levels.INFO if match
+
+  unless level?
+    match = names.some (re)->
+      return re.test(tag)
+    level = levels.DEBUG if match
+
+  level ?= DEFAULT_LAVEL
   return new Logger(tag, level, color())
 
 # ANSI Terminal Colors
@@ -302,12 +351,13 @@ exports.formats = formats =
   file: (data)->
     return JSON.stringify({
       '@timestamp': data.timestamp
-      '@tags': [data.tag, data.pid, data.levelName]
+      '@tags': [data.levelName]
       '@source': "#{data.hostname} #{data.tag}[#{data.pid}]"
       '@message': data.message
       '@fields':
         level: data.level
         levelName: data.levelName
+        stack: data.stack
     }) + "\n"
 
 if istty == true
