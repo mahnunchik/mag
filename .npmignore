@@ -1,4 +1,5 @@
-/src
-/example
-/Makefile
-coffeelint.json
+Makefile
+.jshintrc
+.editorconfig
+
+example

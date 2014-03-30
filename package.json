@@ -1,24 +1,37 @@
 {
   "name": "mag",
-  "description": "Logger for Node.JS",
-  "version": "0.0.7",
-  "author": "Eugeny Vlasenko <mahnunchik@gmail.com>",
-  "keywords": ["log", "logger", "logging", "logstash", "console"],
-  "main": "./lib/mag.js",
-  "engines": {
-    "node": ">= 0.6.0"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "coffee-script": "*",
-    "coffeelint": "*",
-    "markdox": "*"
-  },
+  "version": "0.1.0",
+  "description": "Logger for NodeJS",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mahnunchik/mag.git"
+    "url": "https://github.com/mahnunchik/mag.git"
   },
+  "main": "index.js",
   "scripts": {
-    "prepublish": "make clean && make all"
+    "test": "make test"
+  },
+  "engines" : {
+    "node" : ">= 0.10.0"
+  },
+  "keywords": [
+    "mag",
+    "logger",
+    "logging",
+    "log",
+    "facade",
+    "console"
+  ],
+  "author": {
+    "name": "Eugeny Vlasenko",
+    "email": "mahnunchik+mag@gmail.com",
+    "url": "http://mahnunchik.tumblr.com/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mag-fallback": "*",
+    "mag-logger-facade": "^0.1.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.4.4"
   }
 }

@@ -11,9 +11,7 @@ pids
 logs
 results
 
-.DS_Store
-node_modules
-*.sock
-
 npm-debug.log
-/lib
+node_modules
+
+.DS_Store
