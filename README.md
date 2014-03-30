@@ -29,3 +29,7 @@ var logger = mag('my namespace');
 
 logger.info("example message", {meta: "some metadata"});
 ```
+
+## License
+
+MIT
