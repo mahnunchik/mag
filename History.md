@@ -1,3 +1,7 @@
+# 0.1.1 / 2014-04-04
+
+* Mag magic requiring moved to separate module mag-stream
+
 # 0.1.0 / 2014-03-30
 
 * Rewrited mag as modular, object-stream based logger

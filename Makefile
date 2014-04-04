@@ -12,3 +12,4 @@ all: lint
 
 lint:
 	@$(JSHINT) $(LIB) $(EXAMPLE)
+	@echo "All right!"

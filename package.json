@@ -1,17 +1,14 @@
 {
   "name": "mag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Logger for NodeJS",
   "repository": {
     "type": "git",
     "url": "https://github.com/mahnunchik/mag.git"
   },
   "main": "index.js",
-  "scripts": {
-    "test": "make test"
-  },
-  "engines" : {
-    "node" : ">= 0.10.0"
+  "engines": {
+    "node": ">= 0.10.0"
   },
   "keywords": [
     "mag",
@@ -28,8 +25,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mag-fallback": "*",
-    "mag-logger-facade": "^0.1.0"
+    "mag-logger-facade": "^0.1.0",
+    "mag-stream": "^0.1.0"
   },
   "devDependencies": {
     "jshint": "^2.4.4"
