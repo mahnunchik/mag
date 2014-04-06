@@ -3,7 +3,7 @@ NODE_BIN ?= node_modules/.bin
 JSHINT ?= $(NODE_BIN)/jshint
 
 LIB := index.js
-EXAMPLE := example
+EXAMPLE_DIR := example
 
 .SUFFIXES:
 .PHONY: all lint
@@ -11,5 +11,5 @@ EXAMPLE := example
 all: lint
 
 lint:
-	@$(JSHINT) $(LIB) $(EXAMPLE)
+	@$(JSHINT) $(LIB) $(EXAMPLE_DIR)
 	@echo "All right!"
