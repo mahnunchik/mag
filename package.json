@@ -1,7 +1,7 @@
 {
   "name": "mag",
-  "version": "0.1.2",
-  "description": "Logger for NodeJS",
+  "version": "0.2.0",
+  "description": "Mag is the streaming logger for NodeJS",
   "repository": {
     "type": "git",
     "url": "https://github.com/mahnunchik/mag.git"
@@ -16,7 +16,8 @@
     "logging",
     "log",
     "facade",
-    "console"
+    "console",
+    "stream"
   ],
   "author": {
     "name": "Eugeny Vlasenko",

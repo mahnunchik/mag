@@ -1,3 +1,7 @@
+# 0.2.0 / 2014-04-06
+
+* Release for npm
+
 # 0.1.1 / 2014-04-04
 
 * Mag magic requiring moved to separate module mag-stream
