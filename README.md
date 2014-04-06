@@ -91,28 +91,43 @@ If users of your module want to format log of the module they can require `mag-h
 
 **Warning:** `mag-hub` is designed for use only at the application leyer, do not require it into your modules distributed via npm.
 
+## Motivation
 
-## Features
+TODO
 
-* support syslog severity levels
+* You do not have to configure the output if you develop a module
+* You can do anything with the output if you develop an application
 
-## Usage
+## How does it work?
 
-example.js
-```
-var logger = require('mag')('example');
-logger.info("example message", {meta: "some metadata"});
-```
+TODO
 
-## Configuration
+* [mag-logger-facade](https://github.com/mahnunchik/mag-logger-facade)
+* [mag-stream](https://github.com/mahnunchik/mag-stream)
+* [mag-hub](https://github.com/mahnunchik/mag-hub)
+* [mag-fallback](https://github.com/mahnunchik/mag-fallback)
 
-Setting namespace:
-```
-var mag = require('mag');
-var logger = mag('my namespace');
 
-logger.info("example message", {meta: "some metadata"});
-```
+## Examples
+
+You can find examples of using `mag` logger in this reposiory: [mag-examples](https://github.com/mahnunchik/mag-examples).
+
+There are following branches:
+
+* [simple](https://github.com/mahnunchik/mag-examples/tree/simple) - simplest replacement of console
+* [module](https://github.com/mahnunchik/mag-examples/tree/module) - module using mag as logger
+* [app](https://github.com/mahnunchik/mag-examples/tree/app) - example of application that uses the module above
+* [app-formatted-output](https://github.com/mahnunchik/mag-examples/tree/app-formatted-output) - mag-hub, log levels, and collored output (full example of mag power)
+
+
+## Ideology
+
+A brief interpretation of [The Twelve-Factor App - Logs section](http://12factor.net/logs):
+
+* Log is the stream of time-ordered events.
+* App never concerns itself with routing or storage of its output stream.
+* App should not attempt to write to or manage logfiles.
+* App should write its event stream, unbuffered, to stdout.
 
 ## License
 
