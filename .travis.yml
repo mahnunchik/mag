@@ -1,0 +1,9 @@
+language: node_js
+deploy:
+  provider: npm
+  email: mahnunchik@gmail.com
+  api_key:
+    secure: ULKG+0lXm6Y21QKVjMS3UKc1khg25hHR2bkmxW9PCmbotDUkw8B6dn74tahIO/qI79c4ui3IL0Lwj8P+2LV+m1b9qblv0lCodfwG/ZMD+Y/q6Dwo1PugAZlS/cjNQPhzyYBZoCZRX5eolUziV3x2yRkDRAiRsCAiY6Zs8qJK5jo=
+  on:
+    tags: true
+    repo: mahnunchik/mag
