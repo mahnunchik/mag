@@ -1,6 +1,6 @@
 {
   "name": "mag",
-  "version": "0.2.1",
+  "version": "0.9.0",
   "description": "Mag is the streaming logger for NodeJS",
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mag-logger-facade": "0.1.1",
-    "mag-stream": "^0.1.2"
+    "mag-logger-facade": "0.9.0",
+    "mag-stream": "^0.9.0"
   },
   "devDependencies": {
     "jshint": "^2.5.0"

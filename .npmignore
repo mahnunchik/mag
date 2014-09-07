@@ -1,5 +1,7 @@
 Makefile
 .jshintrc
+.npmignore
 .editorconfig
+.travis.yml
 
 example

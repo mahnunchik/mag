@@ -7,3 +7,4 @@ deploy:
   on:
     tags: true
     repo: mahnunchik/mag
+    all_branches: true
