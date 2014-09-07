@@ -100,6 +100,8 @@ TODO
 
 ## How does it work?
 
+Specification of internal messages format can be found here: [SPEC.md](https://github.com/mahnunchik/mag-logger-facade/blob/master/SPEC.md)
+
 TODO
 
 * [mag-logger-facade](https://github.com/mahnunchik/mag-logger-facade)

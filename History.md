@@ -1,3 +1,9 @@
+# 0.9.0 / 2014-09-07
+
+* Pre 1.0 release
+  - updated `mag-logger-facade` to version 0.9.0
+  - updated `mag-stream` to version 0.9.0
+
 # 0.2.0 / 2014-04-06
 
 * Release for npm
