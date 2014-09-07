@@ -20,7 +20,7 @@ var logger = require('mag')();
 logger.info('my great application is running!');
 logger.debug('process pid is %s', process.pid);
 
-//01:27:36.427 <INFORMATIONAL> my great application is running!
+//01:27:36.427 <INFO> my great application is running!
 //01:27:36.429 <DEBUG> process pid is 29860
 ```
 You get well formatted message with timestamp.
@@ -36,7 +36,7 @@ var libLogger = mag('my-lib');
 logger.info('my great application is running');
 libLogger.debug('my library is running too');
 
-//22:36:24.245 [my-app] <INFORMATIONAL> my great application is running
+//22:36:24.245 [my-app] <INFO> my great application is running
 //22:36:24.246 [my-lib] <DEBUG> my library is running too
 ```
 
@@ -102,8 +102,6 @@ TODO
 
 Specification of internal messages format can be found here: [SPEC.md](https://github.com/mahnunchik/mag-logger-facade/blob/master/SPEC.md)
 
-TODO
-
 * [mag-logger-facade](https://github.com/mahnunchik/mag-logger-facade)
 * [mag-stream](https://github.com/mahnunchik/mag-stream)
 * [mag-hub](https://github.com/mahnunchik/mag-hub)
@@ -133,4 +131,4 @@ A brief interpretation of [The Twelve-Factor App - Logs section](http://12factor
 
 ## License
 
-MIT
+[MIT](https://github.com/mahnunchik/mag/blob/master/LICENSE)
