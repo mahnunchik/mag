@@ -30,6 +30,6 @@
     "mag-stream": "^0.9.0"
   },
   "devDependencies": {
-    "jshint": "^2.5.0"
+    "jshint": "^2.11.1"
   }
 }
